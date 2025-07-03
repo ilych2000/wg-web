@@ -1,0 +1,206 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>ru.wg</groupId>
+	<artifactId>wg-web-client</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+	<name>wg-web-client</name>
+	<description>wg-web-client</description>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<jdk.version>1.6</jdk.version>
+
+		<java.bootstrap.classes>
+			${java.home}/lib/rt.jar
+		</java.bootstrap.classes>
+		<java.cryptographic.extension.classes>
+			${java.home}/lib/jce.jar
+		</java.cryptographic.extension.classes>
+		<java.secure.socket.extension.classes>
+			${java.home}/lib/jsse.jar
+		</java.secure.socket.extension.classes>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-servlet-api</artifactId>
+			<version>7.0.52</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.3.1</version>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+		<dependency>
+			<groupId>org.xerial</groupId>
+			<artifactId>sqlite-jdbc</artifactId>
+			<version>3.7.15-M1</version>
+		</dependency>
+<!-- 		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>1.10</version>
+		</dependency> -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.13</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.4</version>
+		</dependency>
+<!-- 		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.4</version>
+		</dependency>
+		<dependency>
+			<groupId>com.norconex.commons</groupId>
+			<artifactId>norconex-commons-lang</artifactId>
+			<version>1.7.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-jexl</artifactId>
+			<version>2.1.1</version>
+		</dependency>
+-->
+		<!-- <dependency> <groupId>org.apache.commons</groupId> <artifactId>commons-lang3</artifactId> 
+			<version>3.3.2</version> </dependency> <dependency> <groupId>commons-io</groupId> 
+			<artifactId>commons-io</artifactId> <version>2.4</version> </dependency> -->
+
+		<dependency>
+			<groupId>servlets.com</groupId>
+			<artifactId>cos</artifactId>
+			<version>05Nov2002</version>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+<!-- 
+			<plugin>
+				<groupId>com.github.wvengen</groupId>
+				<artifactId>proguard-maven-plugin</artifactId>
+				<version>2.0.11</version>
+				<dependencies>
+					<dependency>
+						<groupId>net.sf.proguard</groupId>
+						<artifactId>proguard-base</artifactId>
+						<version>5.2</version>
+					</dependency>
+				</dependencies>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>proguard</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<obfuscate>true</obfuscate>
+					<injar>wg-web-client-0.0.1-SNAPSHOT.jar</injar>
+					<outjar>wg-web-client-0.0.1-SNAPSHOT-proguarded.jar</outjar>
+
+					<options>
+						<option>-injars wg-web-client-0.0.1-SNAPSHOT.jar</option>
+						<option>-keep public class * { public protected *; }</option>
+					</options>
+					<libs>
+						<lib>${java.bootstrap.classes}</lib>
+						<lib>${java.cryptographic.extension.classes}</lib>
+						<lib>${java.secure.socket.extension.classes}</lib>
+					</libs>
+				</configuration>
+			</plugin>
+-->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+					<archive>
+						<manifest>
+							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+							<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+						</manifest>
+						<manifestEntries>
+							<Implementation-Title>${project.name}</Implementation-Title>
+							<Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
+							<Implementation-Vendor-Id>${project.groupId}</Implementation-Vendor-Id>
+							<Implementation-Version>${project.version}</Implementation-Version>
+							<Built-Date>${maven.build.timestamp}</Built-Date>
+							<Build-Version>${project.version}_${svn.committedRevision}</Build-Version>
+							<Built-By>${user.name}</Built-By>
+						</manifestEntries>
+					</archive>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+					<archiveClasses>true</archiveClasses>
+					<webResources>
+						<resource>
+							<directory>src/main/resources</directory>
+							<targetPath>WEB-INF/classes</targetPath>
+							<filtering>true</filtering>
+							<includes>
+								<include>*/**</include>
+							</includes>
+						</resource>
+					</webResources>
+					<outputDirectory>${project.warOutDir}</outputDirectory>
+					<warName>wg</warName>
+					<archive>
+						<manifest>
+							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+							<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+						</manifest>
+						<manifestEntries>
+							<Implementation-Title>${project.name}</Implementation-Title>
+							<Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
+							<Implementation-Vendor-Id>${project.groupId}</Implementation-Vendor-Id>
+							<Implementation-Version>${project.version}</Implementation-Version>
+							<Built-Date>${maven.build.timestamp}</Built-Date>
+							<Build-Version>${project.version}_${svn.committedRevision}</Build-Version>
+							<Built-By>${user.name}</Built-By>
+						</manifestEntries>
+					</archive>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>${jdk.version}</source>
+					<target>${jdk.version}</target>
+				</configuration>
+			</plugin>
+
+		</plugins>
+
+	</build>
+	<repositories>
+		<repository>
+			<id>codelds</id>
+			<url>https://code.lds.org/nexus/content/groups/main-repo</url>
+		</repository>
+	</repositories>
+</project>

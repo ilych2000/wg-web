@@ -1,0 +1,143 @@
+#mainForm{
+	display: none;
+}
+
+#enterLogin{
+	width: 300px;  
+	b1order: thin solid gray;
+	border-radius: 10px;
+	padding: 15px;
+	text-align: left;
+	display: inline-block;
+		background-color: rgba(100, 100, 100, 0.5);
+		color: #fff;
+				text-shadow: black 0 0 6px;
+}
+#enterTitle{
+display: block;
+	width: 700px; 
+	margin-bottom: 20px;
+	b1ackground-color: rgba(247, 119, 119, 0.5);
+	border-radius: 10px;
+		padding: 10px;
+		color: #fff;
+		text-shadow: black 0 0 16px;
+	    font-size: 25px;
+    font-weight: bolder;	
+}
+
+#enterForm>span>div{
+	text-align: center;
+	ba1ckground-color: aqua;
+}
+#enterForm{
+	background: url(../img/bg1.jpg) no-repeat scroll center;
+}
+
+
+.col-md{
+	background-color: aqua;
+	border-radius: 5px;
+	
+	border: thin solid gray;
+}
+
+.panel-body { 
+
+
+}
+
+.group-control {
+
+}
+
+.group-caret {
+
+}
+
+.group-items {
+	padding-left: 20px;
+	padding-bottom: 10px;
+	
+}
+.group-control, .group-items>div>span {
+cursor: pointer;
+}
+
+#mainForm>header {
+	mqargin-bottom: 20px;
+		p1adding: 10px;
+		color: #5a5a5a;
+		text-shadow: #b8b8b8 0 0 1px;
+	    font-size: 19px;
+    font-weight: bolder;
+    	padding: 5px;
+text-align: center;
+}
+
+#menu {
+	margin-bottom: 0px;
+}
+
+#workPanel {
+	padding: 5px;
+}
+
+#btnCalculateSelect{
+	text-align: left;
+	border: none;
+}
+
+#btnAreaSelect{
+	text-align: left;
+	border: none;
+	border-bottom: thin solid #bfbfbf;
+	overflow: hidden;
+}
+
+#menuAreaSelect{
+	max-height: 400px; 
+	overflow-y: auto; 
+	overflow-style: auto;
+}
+
+#menuAreaSelect li.dropdown-header{
+	font-size: larger
+}
+
+.objectItem:BEFORE {
+	content: ' - ';
+}
+
+#objectTitle{
+	padding: 5px 5px 5px 5px;	
+	margin-bottom: 5px;
+	font-weight: bolder;
+}
+
+#hintAsyncUpdate {
+	background-color: yellow; 
+	display: inline-block;
+	position: fixed;
+}
+
+#workPanel table thead {
+	background-color: #f1f1f1;
+}
+
+#workPanel table thead th, #workPanel table thead td {
+	vertical-align: middle;
+	text-align: center;
+}
+
+.dataSaveField {
+	background-color: #ffffe3;
+}
+
+.rotate-90 {
+	-moz-transform: rotate(-90deg);
+	-webkit-transform: rotate(-90deg);
+	-o-transform: rotate(-90deg);
+	-ms-transform: rotate(-90deg); /* для IE9 */
+	transform: rotate(-90deg); /* на будущее */
+}

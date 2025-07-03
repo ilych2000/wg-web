@@ -1,0 +1,81 @@
+<!DOCTYPE html><html>  <head>    <title>Расчет показателей технического состояния (Тсy)    и безопасности (БСсц)</title>    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">    <link rel="stylesheet" href="css/normalize.css">    <script  src="js/debug.js"></script>    <script src="js/jquery-latest.js"></script>        <script  src="js/lib.js"></script>    <script src="bs3/js/bootstrap.min.js"></script>    <link href="bs3/css/bootstrap.min.css" rel="stylesheet">    <link rel="stylesheet" href="css/style.css">    <link rel="stylesheet" href="css/lib.css">    <script  src="js/ajax_lib.js"></script>    <script  src="js/main.js"></script>  
+<style type="text/css">
+<!--
+/*body {
+	color: Black;
+	background: #e7f7ee;
+   color: Black;
+   background: #e7f7ee;
+   padding: 0px;
+   margin: 0px 0px 0px 0px;
+   word-wrap: break-word;
+}
+
+html {
+   scrollbar-3dlight-color: #F5F5F5;
+	scrollbar-arrow-color: Gray;
+	scrollbar-base-color: #F5F5F5;
+	scrollbar-darkshadow-color: #F5F5F5;
+	scrollbar-face-color: #F5F5F5;
+	scrollbar-highlight-color: Gray;
+	scrollbar-shadow-color: Gray;
+	scrollbar-track-color: #F5F5F5;
+	background:url(about:blank);
+}*/
+
+div.centerContent, div.tinyContent {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	display: table;
+	z-index: 5000;
+}
+
+div.tinyContent {
+	z-index: 4999;
+	background-color: ButtonFace;
+	-moz-opacity: 0.7;
+	opacity: .7;
+	filter: alpha(opacity = 70);
+}
+
+div#tinyModalContent {
+	z1-index: 3000;
+}
+
+div.centerContent>span {
+	vertical-align: middle;
+	text-align: center;
+	display: table-cell;
+}
+
+div.centerContent>span>* {
+	display: inline-block;
+}
+
+.col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.panel100ps {
+	width: 100%;
+}
+
+.marginleft1em{
+	margin-left: 1em;
+}
+
+.marginleft2em{
+	margin-left: 2em;
+}
+
+.paddingAll5px{
+	padding: 5px 5px 5px 5px;
+}
+
+-->
+</style>
+</head>  <body>    <div id="hintAsyncUpdate" class="navbar-static-top">  		Данные сохраняются...    </div>    <div id="tinyCenterContent" class="tinyContent">    </div>    <div id="loading" class="centerContent tinyContent">      <span>        <img src="img/bigLoading32.gif" width="32" height="32">      </span>    </div>    <div id="enterForm" class="centerContent">      <span>        <div>          <div id="enterTitle">            Расчет показателей технического состояния (Тсy)            и безопасности (БСсц)          </div>          <div id="enterLogin" >            <form role="form">              <div class="form-group" >                <label for="login">Логин</label>                <input  class="form-control" id="email" placeholder="Логин">              </div>              <div class="form-group">                <label for="pass">Пароль</label>                <input type="password" class="form-control" id="pass" placeholder="Пароль">              </div>            </form>            <button id="enterSubmit" type="submit" class="btn btn-info btn-block">Войти</button>          </div>        </div>      </span>    </div>    <div id="mainForm" class="container-fluid" >      <header>Расчет показателей технического состояния (Тсy)        и безопасности (БСсц), определение вида технического состояния,        уровня безопасности и верхней границы расчетной вероятности      возникновения аварии (1/год) СГТС</header>      <div class="row">        <div class="col-md-3 panel">          <div class="panel panel-default">            <div class="panel-heading">Перечень объектов</div>                        <div class="btn-group panel100ps" >              <button id="btnAreaSelect"  type="button"              class="btn btn-default dropdown-toggle panel100ps" data-toggle="dropdown">              <span class="caret"></span> <span id="btnAreaSelectText">Выбор объекта</span>              </button>              <ul id="menuAreaSelect" class="dropdown-menu" role="menu">              </ul>            </div>            <div id="objectList" class="panel-body">            </div>          </div>        </div>        <div class="col-md-9 panel" >          <div id="objectTitle" class="panel panel-default">          </div>          <div class="btn-group panel100ps">            <button title="Выбор расчета." id="btnCalculateSelect"  type="button"            class="btn btn-default dropdown-toggle panel100ps" data-toggle="dropdown">            <span class="caret"></span> <span id="txtCalculateSelect"> </span>            </button>            <ul class="dropdown-menu" role="menu" id="menuCalculateSelect">            </ul>          </div>          <div  class="panel panel-default" style="border-right-style: none;">            <ul id="menu" class="nav nav-tabs">              <li><a id="SCENARY" href="#">1 Сценарии аварий</a></li>              <li><a id="FACT_VALUE" href="#">2 Фактические значения</a></li>              <li><a id="SEL_CRIT" href="#">3 Подбор критериев</a></li>              <li><a id="EVAL_TABLE" href="#">4 Расчетная таблица</a></li>              <li><a id="ALL_REZULT" href="#">5 Результат общий</a></li>              <li><a id="BAD_REZULT" href="#">6 Результат</a></li>            </ul>            <div id="workPanel" class="panel-body">            </div>          </div>        </div>      </div>    </div>  </body></html>
