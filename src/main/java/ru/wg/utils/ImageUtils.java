@@ -25,11 +25,13 @@ public class ImageUtils {
     }
 
     public static BufferedImage converToGray(BufferedImage img) throws IOException {
-        if (img.getType() == BufferedImage.TYPE_BYTE_GRAY)
+        if (img.getType() == BufferedImage.TYPE_BYTE_GRAY) {
             return img;
+        }
 
         ColorConvertOp op = new ColorConvertOp(ColorSpace.getInstance(ColorSpace.CS_GRAY), null);
-        BufferedImage ret = new BufferedImage(img.getWidth(), img.getHeight(), BufferedImage.TYPE_BYTE_GRAY);
+        BufferedImage ret =
+                new BufferedImage(img.getWidth(), img.getHeight(), BufferedImage.TYPE_BYTE_GRAY);
         op.filter(img, ret);
         return ret;
     }
@@ -44,24 +46,27 @@ public class ImageUtils {
         return ImageIO.read(new ByteArrayInputStream(imgBytes));
     }
 
-    public static BufferedImage createResizedCopy(BufferedImage image, int scaledWidth, int scaledHeight) {
+    public static BufferedImage createResizedCopy(BufferedImage image, int scaledWidth,
+            int scaledHeight) {
 
         if (image == null) {
             log.error("createResizedCopy image == null");
             return null;
         }
 
-        if (image.getWidth() < scaledWidth && image.getHeight() < scaledHeight)
+        if ((image.getWidth() < scaledWidth) && (image.getHeight() < scaledHeight)) {
             return image;
+        }
 
         float fattX = ((float) scaledWidth / (float) image.getWidth());
         float fattY = ((float) scaledHeight / (float) image.getHeight());
 
         float modifier = ((fattX > fattY) ? fattY : fattX);
-        scaledWidth = (int) ((float) image.getWidth() * modifier);
-        scaledHeight = (int) ((float) image.getHeight() * modifier);
+        scaledWidth = (int) (image.getWidth() * modifier);
+        scaledHeight = (int) (image.getHeight() * modifier);
 
-        BufferedImage scaledBI = new BufferedImage(scaledWidth, scaledHeight, BufferedImage.TYPE_INT_RGB);
+        BufferedImage scaledBI =
+                new BufferedImage(scaledWidth, scaledHeight, BufferedImage.TYPE_INT_RGB);
 
         Graphics2D g = scaledBI.createGraphics();
 

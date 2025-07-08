@@ -14,7 +14,7 @@ public class ReflectionUtils {
 
     /**
      * Создает экземпляр класса.
-     * 
+     *
      * @param name полное имя класса
      * @return экземпляр класса
      * @throws InstantiationException
@@ -22,15 +22,13 @@ public class ReflectionUtils {
      * @throws ClassNotFoundException
      */
     public static Object createObject(String name)
-            throws InstantiationException, IllegalAccessException,
-            ClassNotFoundException {
-        return Thread.currentThread().getContextClassLoader().loadClass(name)
-                .newInstance();
+            throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+        return Thread.currentThread().getContextClassLoader().loadClass(name).newInstance();
     }
 
     /**
      * Вызов метода объекта с параметрами.
-     * 
+     *
      * @param object объект
      * @param method имя метода
      * @param params параметры
@@ -41,29 +39,26 @@ public class ReflectionUtils {
      * @throws InvocationTargetException
      * @throws NoSuchMethodException
      */
-    public static Object callMethod(Object object, String method,
-            Object... params) throws IllegalArgumentException,
-            SecurityException, IllegalAccessException,
+    public static Object callMethod(Object object, String method, Object... params)
+            throws IllegalArgumentException, SecurityException, IllegalAccessException,
             InvocationTargetException, NoSuchMethodException {
 
         List<Class<?>> parameterTypes = new ArrayList<Class<?>>();
 
-        if (params != null && params.length > 0) {
+        if ((params != null) && (params.length > 0)) {
             for (Object o : params) {
                 parameterTypes.add(o.getClass());
             }
         }
 
-        return object
-                .getClass()
-                .getDeclaredMethod(method,
-                        parameterTypes.toArray(new Class<?>[] {}))
+        return object.getClass()
+                .getDeclaredMethod(method, parameterTypes.toArray(new Class<?>[] {}))
                 .invoke(object, params);
     }
 
     /**
      * Вызов метода объекта.
-     * 
+     *
      * @param object объект
      * @param method имя метода
      * @return результат вызова метода
@@ -74,16 +69,15 @@ public class ReflectionUtils {
      * @throws NoSuchMethodException
      */
     public static Object callMethod(Object object, String method)
-            throws IllegalArgumentException, SecurityException,
-            IllegalAccessException, InvocationTargetException,
-            NoSuchMethodException {
+            throws IllegalArgumentException, SecurityException, IllegalAccessException,
+            InvocationTargetException, NoSuchMethodException {
 
         return callMethod(object, method, (Object[]) null);
     }
 
     /**
      * Присвоение значения полю объекта.
-     * 
+     *
      * @param object объект
      * @param name имя поля
      * @param value значение
@@ -93,8 +87,8 @@ public class ReflectionUtils {
      * @throws IllegalAccessException
      */
     public static void setDeclaredField(Object object, String name, Object value)
-            throws SecurityException, NoSuchFieldException,
-            IllegalArgumentException, IllegalAccessException {
+            throws SecurityException, NoSuchFieldException, IllegalArgumentException,
+            IllegalAccessException {
         Field field = object.getClass().getDeclaredField(name);
         AccessibleObject.setAccessible(new Field[] {field}, true);
         field.set(object, value);
@@ -102,7 +96,7 @@ public class ReflectionUtils {
 
     /**
      * Присвоение значения полю объекта через вызов сетора.
-     * 
+     *
      * @param object объект
      * @param name имя поля. Для него ищется метод "set" + name.
      * @param value значение
@@ -113,10 +107,9 @@ public class ReflectionUtils {
      * @throws NoSuchMethodException если не найден метод "set" + name.
      * @throws InvocationTargetException
      */
-    public static void setDeclaredMethodField(Object object, String name,
-            Object value) throws SecurityException, NoSuchFieldException,
-            IllegalArgumentException, IllegalAccessException,
-            InvocationTargetException, NoSuchMethodException {
+    public static void setDeclaredMethodField(Object object, String name, Object value)
+            throws SecurityException, NoSuchFieldException, IllegalArgumentException,
+            IllegalAccessException, InvocationTargetException, NoSuchMethodException {
         Method[] methods = object.getClass().getMethods();
         String mName = "set" + name;
         Method method = null;
@@ -134,8 +127,8 @@ public class ReflectionUtils {
         Class<?>[] types = method.getParameterTypes();
 
         if (types.length != 1) {
-            throw new IllegalArgumentException("Method " + mName
-                    + " has more than one parameter, but " + types.length + ".");
+            throw new IllegalArgumentException(
+                    "Method " + mName + " has more than one parameter, but " + types.length + ".");
         }
 
         callMethod(object, mName, MessageUtils.getParseObject(value, types[0]));
@@ -143,7 +136,7 @@ public class ReflectionUtils {
 
     /**
      * Получение значения поля объекта.
-     * 
+     *
      * @param object объект
      * @param name имя поля
      * @throws SecurityException
@@ -151,9 +144,8 @@ public class ReflectionUtils {
      * @throws IllegalArgumentException
      * @throws IllegalAccessException
      */
-    public static Object getValueField(Object object, String name)
-            throws SecurityException, NoSuchFieldException,
-            IllegalArgumentException, IllegalAccessException {
+    public static Object getValueField(Object object, String name) throws SecurityException,
+            NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
         Field field = object.getClass().getDeclaredField(name);
         AccessibleObject.setAccessible(new Field[] {field}, true);
         return field.get(object);
@@ -161,24 +153,22 @@ public class ReflectionUtils {
 
     /**
      * Получение значения первого поля объекта.
-     * 
+     *
      * @param object объект
      * @throws SecurityException
      * @throws NoSuchFieldException
      * @throws IllegalArgumentException
      * @throws IllegalAccessException
      */
-    public static Object getValueFirstField(Object object)
-            throws SecurityException, NoSuchFieldException,
-            IllegalArgumentException, IllegalAccessException {
+    public static Object getValueFirstField(Object object) throws SecurityException,
+            NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
         if (object == null) {
             return null;
         }
 
         Field[] fields = object.getClass().getDeclaredFields();
         if (fields.length == 0) {
-            throw new NoSuchFieldException("Object " + object
-                    + " no has fields.");
+            throw new NoSuchFieldException("Object " + object + " no has fields.");
         }
 
         AccessibleObject.setAccessible(new Field[] {fields[0]}, true);
@@ -187,7 +177,7 @@ public class ReflectionUtils {
 
     /**
      * Получение всех полей класса и его родителей.
-     * 
+     *
      * @param clazz класс
      * @return массив полей
      */
@@ -196,26 +186,22 @@ public class ReflectionUtils {
     }
 
     /**
-     * Получение всех полей класса и его родителей до определенного
-     * родительского класса.
-     * 
+     * Получение всех полей класса и его родителей до определенного родительского класса.
+     *
      * @param clazz класс
-     * @param stopClass класс до которого нужно получить поля не включая этот
-     *            класс
+     * @param stopClass класс до которого нужно получить поля не включая этот класс
      * @return массив полей
      */
-    public static Field[] getAllClassFieldsToClass(Class<?> clazz,
-            Class<?> stopClass) {
+    public static Field[] getAllClassFieldsToClass(Class<?> clazz, Class<?> stopClass) {
         Field[] fields = clazz.getDeclaredFields();
         Class<?> sClazz = clazz.getSuperclass();
 
-        if (sClazz != stopClass && sClazz != Object.class) {
+        if ((sClazz != stopClass) && (sClazz != Object.class)) {
             Field[] sFields = getAllClassFieldsToClass(sClazz, stopClass);
             if (sFields.length > 0) {
                 Field[] newFields = new Field[fields.length + sFields.length];
                 System.arraycopy(fields, 0, newFields, 0, fields.length);
-                System.arraycopy(sFields, 0, newFields, fields.length,
-                        sFields.length);
+                System.arraycopy(sFields, 0, newFields, fields.length, sFields.length);
                 fields = newFields;
             }
         }
@@ -224,7 +210,7 @@ public class ReflectionUtils {
 
     /**
      * Проверяет переопределен ли метод toString()
-     * 
+     *
      * @see {@link Object#toString()}
      * @param clazz
      * @return

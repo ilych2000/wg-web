@@ -11,37 +11,34 @@ import org.apache.log4j.Logger;
 @WebServlet(name = "updatefield", urlPatterns = "/updatefield.json")
 public class AjaxUpdateFieldValueController extends AbstractAjaxController {
 
-	/** 	 */
-	private static final long serialVersionUID = 1L;
+    /** 	 */
+    private static final long serialVersionUID = 1L;
 
-	@SuppressWarnings("unused")
-	private static final Logger LOG = Logger
-			.getLogger(AjaxUpdateFieldValueController.class);
+    @SuppressWarnings("unused")
+    private static final Logger LOG = Logger.getLogger(AjaxUpdateFieldValueController.class);
 
-	@Override
-	public Object doPostAjaxOperation(Object inObject,
-			HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
+    @Override
+    public Object doPostAjaxOperation(Object inObject, HttpServletRequest request,
+            HttpServletResponse response) throws Exception {
 
-		@SuppressWarnings({ "unchecked" })
-		final Map<String, Object> parameters = (Map<String, Object>) inObject;
+        @SuppressWarnings({"unchecked"})
+        final Map<String, Object> parameters = (Map<String, Object>) inObject;
 
-		String aDataTable = String.valueOf(parameters.get("DATA_TABLE"));
-		String aDataField = String.valueOf(parameters.get("DATA_FIELD"));
-		String aDataValue = String.valueOf(parameters.get("DATA_VALUE"));
-		String aDataId = String.valueOf(parameters.get("DATA_ID"));
+        String aDataTable = String.valueOf(parameters.get("DATA_TABLE"));
+        String aDataField = String.valueOf(parameters.get("DATA_FIELD"));
+        String aDataValue = String.valueOf(parameters.get("DATA_VALUE"));
+        String aDataId = String.valueOf(parameters.get("DATA_ID"));
 
-		_sqlManager.updateFieldValue(aDataTable, aDataField, aDataValue,
-				aDataId);
+        _sqlManager.updateFieldValue(aDataTable, aDataField, aDataValue, aDataId);
 
-		return new Object();
-	}
+        return new Object();
+    }
 
-	@Override
-	public Object doGetAjaxOperation(Object inObject, HttpServletRequest req,
-			HttpServletResponse response) throws Exception {
+    @Override
+    public Object doGetAjaxOperation(Object inObject, HttpServletRequest req,
+            HttpServletResponse response) throws Exception {
 
-		return doPostAjaxOperation(inObject, req, response);
-	}
+        return doPostAjaxOperation(inObject, req, response);
+    }
 
 }

@@ -1,22 +1,25 @@
 package ru.wg.utils;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 
 import com.oreilly.servlet.multipart.FileRenamePolicy;
 
 public class WebFileRenamePolicy implements FileRenamePolicy {
 
+    @Override
     public File rename(File f) {
         String body = System.currentTimeMillis() + "_" + this.hashCode() + ".";
         String ext = "jpg";
 
-        if (f != null)
+        if (f != null) {
             f = new File(f.getParent(), body + ext);
-        else
+        } else {
             f = new File(body + ext);
+        }
 
         int count = 0;
-        while (!createNewFile(f) && count < 9999) {
+        while (!createNewFile(f) && (count < 9999)) {
             count++;
             String newName = body + count + ext;
             f = new File(f.getParent(), newName);

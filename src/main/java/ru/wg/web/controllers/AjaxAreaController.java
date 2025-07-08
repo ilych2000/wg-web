@@ -11,31 +11,29 @@ import org.apache.log4j.Logger;
 @WebServlet(name = "getarea", urlPatterns = "/getarea.json")
 public class AjaxAreaController extends AbstractAjaxController {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
-	@SuppressWarnings("unused")
-	private static final Logger LOG = Logger
-			.getLogger(AjaxAreaController.class);
+    @SuppressWarnings("unused")
+    private static final Logger LOG = Logger.getLogger(AjaxAreaController.class);
 
-	@Override
-	public Object doPostAjaxOperation(Object inObject,
-			HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
+    @Override
+    public Object doPostAjaxOperation(Object inObject, HttpServletRequest request,
+            HttpServletResponse response) throws Exception {
 
-		@SuppressWarnings({ "unchecked", "unused" })
-		final Map<String, Object> parameters = (Map<String, Object>) inObject;
+        @SuppressWarnings({"unchecked", "unused"})
+        final Map<String, Object> parameters = (Map<String, Object>) inObject;
 
-		return _sqlManager.getControlList();
-	}
+        return _sqlManager.getControlList();
+    }
 
-	@Override
-	public Object doGetAjaxOperation(Object inObject, HttpServletRequest req,
-			HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub
-		return doPostAjaxOperation(inObject, req, response);
-	}
+    @Override
+    public Object doGetAjaxOperation(Object inObject, HttpServletRequest req,
+            HttpServletResponse response) throws Exception {
+        // TODO Auto-generated method stub
+        return doPostAjaxOperation(inObject, req, response);
+    }
 
 }

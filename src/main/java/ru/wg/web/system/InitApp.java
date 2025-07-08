@@ -19,6 +19,7 @@ import ru.wg.web.controllers.AbstractAuthControllerEx;
 public class InitApp implements Servlet {
 
     private static final Logger log = Logger.getLogger(InitApp.class);
+
     @SuppressWarnings("serial")
     @Override
     public void init(ServletConfig servletConfig) throws ServletException {
@@ -26,7 +27,8 @@ public class InitApp implements Servlet {
         final String realPath = servletConfig.getServletContext().getRealPath("");
         log.info("realPath=" + realPath);
         try {
-            log.info("Init AppParameters from file '" + realPath + "/WEB-INF/settings.properties" + "'");
+            log.info("Init AppParameters from file '" + realPath + "/WEB-INF/settings.properties"
+                    + "'");
             AppParameters.init(realPath + "/WEB-INF/settings.properties");
             AppParameters.setProperty(AppParameters.APP_REAL_PATH, realPath);
 
@@ -38,14 +40,12 @@ public class InitApp implements Servlet {
                     add("jdbc:sqlite:" + realPath + "/WEB-INF/db/main.db");
                 }
             }));
-            
+
             AbstractAuthControllerEx.setSqlManager(sqlManager);
             log.info("Init server OK.");
         } catch (IOException e) {
             log.error(e);
         }
-
-
 
     }
 
@@ -55,8 +55,8 @@ public class InitApp implements Servlet {
     }
 
     @Override
-    public void service(ServletRequest servletRequest, ServletResponse servletResponse) throws ServletException,
-            IOException {
+    public void service(ServletRequest servletRequest, ServletResponse servletResponse)
+            throws ServletException, IOException {
 
     }
 
@@ -67,6 +67,6 @@ public class InitApp implements Servlet {
 
     @Override
     public void destroy() {
-      
+
     }
 }

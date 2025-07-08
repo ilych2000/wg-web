@@ -13,7 +13,7 @@ public interface DataSourceInt {
 
     /**
      * Выполняет запрос
-     * 
+     *
      * @param aContext контекст
      * @param aSqltext SQL запрос
      * @return {@link ResultSet}
@@ -23,7 +23,7 @@ public interface DataSourceInt {
 
     /**
      * Выполняет запрос
-     * 
+     *
      * @param aContext контекст
      * @param aSqltext SQL запрос
      * @param aParams параметры
@@ -35,7 +35,7 @@ public interface DataSourceInt {
 
     /**
      * Выполняет запрос
-     * 
+     *
      * @param aContext контекст
      * @param aMaxRows возвращаемое максимальное количество записей
      * @param aSqltext SQL запрос
@@ -43,24 +43,24 @@ public interface DataSourceInt {
      * @return {@link ResultSet}
      * @throws Exception
      */
-    public ResultSet executeQuery(int aContext, int aMaxRows, String aSqltext,
-            Object... aParams) throws Exception;
+    public ResultSet executeQuery(int aContext, int aMaxRows, String aSqltext, Object... aParams)
+            throws Exception;
 
     /**
      * Выполняет запрос
-     * 
+     *
      * @param aContext контекст
      * @param aSqltext SQL запрос
      * @param aParams параметры
      * @return список объектов {@link Map} содержащих поле-значение
      * @throws Exception
      */
-    public List<Map<String, Object>> executeQueryListResult(int aContext,
-            String aSqltext, Object... aParams) throws Exception;
+    public List<Map<String, Object>> executeQueryListResult(int aContext, String aSqltext,
+            Object... aParams) throws Exception;
 
     /**
      * Выполняет запрос
-     * 
+     *
      * @param aContext контекст
      * @param aMaxRows возвращаемое максимальное количество записей
      * @param aSqltext SQL запрос
@@ -68,19 +68,19 @@ public interface DataSourceInt {
      * @return список {@link Map} значений поле-значение
      * @throws Exception
      */
-    public List<Map<String, Object>> executeQueryListResult(int aContext,
-            String aSqltext, int aMaxRows, Object... aParams) throws Exception;
+    public List<Map<String, Object>> executeQueryListResult(int aContext, String aSqltext,
+            int aMaxRows, Object... aParams) throws Exception;
 
     /**
      * Закрывает {@link ResultSet}
-     * 
+     *
      * @param aRs {@link ResultSet}
      */
     public void closeResultSet(ResultSet aRs);
 
     /**
      * Выполняет запрос
-     * 
+     *
      * @param aContext контекст
      * @param aSqltext SQL запрос
      * @return id последней измененой записи
@@ -90,31 +90,30 @@ public interface DataSourceInt {
 
     /**
      * Выполняет запрос
-     * 
+     *
      * @param aContext контекст
      * @param aSqltext SQL запрос
      * @param aParams параметры
      * @return id последней измененой записи
      * @throws SQLException
      */
-    public int executeUpdate(int aContext, String aSqltext, Object... aParams)
-            throws SQLException;
+    public int executeUpdate(int aContext, String aSqltext, Object... aParams) throws SQLException;
 
     /**
      * Выполняет запросы со списком параметров
-     * 
+     *
      * @param aContext контекст
      * @param aSqltext SQL запрос
      * @param aListParams список масивов значений параметров запроса
      * @return количество измененных записей
      * @throws SQLException
      */
-    public int executeListUpdate(int aContext, String aSqltext,
-            List<Object[]> aListParams) throws SQLException;
+    public int executeListUpdate(int aContext, String aSqltext, List<Object[]> aListParams)
+            throws SQLException;
 
     /**
      * Получение {@link Connection}
-     * 
+     *
      * @param aContext контекст
      * @return {@link Connection}
      * @throws SQLException
@@ -123,7 +122,7 @@ public interface DataSourceInt {
 
     /**
      * Выводит в лог информацию о подлюченых БД.
-     * 
+     *
      * @return String
      */
     public String getDataSourceInfo();

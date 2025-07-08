@@ -4,32 +4,34 @@ import java.util.List;
 
 public class AreaControl {
 
-	private int ID;
-	private String NAME;
-	private List<Area> AREAS;
+    private int ID;
 
-	public int getID() {
-		return ID;
-	}
+    private String NAME;
 
-	public void setID(int iD) {
-		ID = iD;
-	}
+    private List<Area> AREAS;
 
-	public String getNAME() {
-		return NAME;
-	}
+    public int getID() {
+        return ID;
+    }
 
-	public void setNAME(String nAME) {
-		NAME = nAME;
-	}
+    public void setID(int iD) {
+        ID = iD;
+    }
 
-	public List<Area> getAREAS() {
-		return AREAS;
-	}
+    public String getNAME() {
+        return NAME;
+    }
 
-	public void setAREAS(List<Area> aREAS) {
-		AREAS = aREAS;
-	}
+    public void setNAME(String nAME) {
+        NAME = nAME;
+    }
+
+    public List<Area> getAREAS() {
+        return AREAS;
+    }
+
+    public void setAREAS(List<Area> aREAS) {
+        AREAS = aREAS;
+    }
 
 }

@@ -6,62 +6,62 @@ import java.io.FileFilter;
 import org.apache.commons.lang3.CharUtils;
 import org.apache.log4j.Logger;
 
-
-
 public class FileUtils {
-	@SuppressWarnings("unused")
-	private static final Logger LOG = Logger.getLogger(FileUtils.class);
 
-	public static void clearTempDir(final String paternForDelete, String dir) {
+    @SuppressWarnings("unused")
+    private static final Logger LOG = Logger.getLogger(FileUtils.class);
 
-		File folder = new File(dir);
+    public static void clearTempDir(final String paternForDelete, String dir) {
 
-		File[] files = folder.listFiles(new FileFilter() {
+        File folder = new File(dir);
 
-			@Override
-			public boolean accept(File file) {
-				return file.isFile() && file.getName().indexOf(paternForDelete) != -1;
-			}
-		});
+        File[] files = folder.listFiles(new FileFilter() {
 
-		clearDir(files);
-	}
+            @Override
+            public boolean accept(File file) {
+                return file.isFile() && (file.getName().indexOf(paternForDelete) != -1);
+            }
+        });
 
-	public static void clearTempDir(final long timeLife, String dir) {
+        clearDir(files);
+    }
 
-		File folder = new File(dir);
+    public static void clearTempDir(final long timeLife, String dir) {
 
-		File[] files = folder.listFiles(new FileFilter() {
+        File folder = new File(dir);
 
-			private long deleteTime = System.currentTimeMillis() - timeLife;
+        File[] files = folder.listFiles(new FileFilter() {
 
-			@Override
-			public boolean accept(File file) {
-				return file.isFile() && file.lastModified() < deleteTime;
-			}
-		});
+            private long deleteTime = System.currentTimeMillis() - timeLife;
 
-		clearDir(files);
-	}
+            @Override
+            public boolean accept(File file) {
+                return file.isFile() && (file.lastModified() < deleteTime);
+            }
+        });
 
-	private static void clearDir(File[] files) {
+        clearDir(files);
+    }
 
-		if (files != null)
-			for (File f : files) {
-				if (f.isFile())
-					f.delete();
-			}
-	}
+    private static void clearDir(File[] files) {
 
+        if (files != null) {
+            for (File f : files) {
+                if (f.isFile()) {
+                    f.delete();
+                }
+            }
+        }
+    }
 
     public static String toSafeFileName(String unsafeFileName) {
         if (unsafeFileName == null) {
             return null;
         }
         StringBuilder b = new StringBuilder();
-        for (int i = 0; i < unsafeFileName.length(); i++){
+        for (int i = 0; i < unsafeFileName.length(); i++) {
             char ch = unsafeFileName.charAt(i);
-            if (CharUtils.isAsciiAlphanumeric(ch) || ch == '-' || ch == '.') {
+            if (CharUtils.isAsciiAlphanumeric(ch) || (ch == '-') || (ch == '.')) {
                 b.append(ch);
             } else {
                 b.append('_');

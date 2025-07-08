@@ -2,33 +2,36 @@ package ru.wg.web.pojo;
 
 import java.util.List;
 
-public class Uzel{
-	private int ID;
-	private String NAME;
-	private List<WGObject> OBJECTS;
+public class Uzel {
 
-	public int getID() {
-		return ID;
-	}
+    private int ID;
 
-	public void setID(int iD) {
-		ID = iD;
-	}
+    private String NAME;
 
-	public String getNAME() {
-		return NAME;
-	}
+    private List<WGObject> OBJECTS;
 
-	public void setNAME(String nAME) {
-		NAME = nAME;
-	}
+    public int getID() {
+        return ID;
+    }
 
-	public List<WGObject> getOBJECTS() {
-		return OBJECTS;
-	}
+    public void setID(int iD) {
+        ID = iD;
+    }
 
-	public void setOBJECTS(List<WGObject> oBJECTS) {
-		OBJECTS = oBJECTS;
-	}
+    public String getNAME() {
+        return NAME;
+    }
+
+    public void setNAME(String nAME) {
+        NAME = nAME;
+    }
+
+    public List<WGObject> getOBJECTS() {
+        return OBJECTS;
+    }
+
+    public void setOBJECTS(List<WGObject> oBJECTS) {
+        OBJECTS = oBJECTS;
+    }
 
 }

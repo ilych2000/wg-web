@@ -1,128 +1,127 @@
 package ru.wg.web.pojo;
 
 public class Scenarios {
-	private int ID;
 
-	private int CALCULATION_ID;
-	private int CHECKED;
-	private int OBJECT_TYPE_ID;
-	private int SCENARIOS_GROUP_ID;
-	private int RANK;
-	private String NPP;
-	private String NAME;
+    private int ID;
 
-	/**
-	 * @return the iD
-	 */
-	public int getID() {
-		return ID;
-	}
+    private int CALCULATION_ID;
 
-	/**
-	 * @param iD
-	 *            the iD to set
-	 */
-	public void setID(int iD) {
-		ID = iD;
-	}
+    private int CHECKED;
 
-	/**
-	 * @return the cALCULATION_ID
-	 */
-	public int getCALCULATION_ID() {
-		return CALCULATION_ID;
-	}
+    private int OBJECT_TYPE_ID;
 
-	/**
-	 * @param cALCULATION_ID
-	 *            the cALCULATION_ID to set
-	 */
-	public void setCALCULATION_ID(int cALCULATION_ID) {
-		CALCULATION_ID = cALCULATION_ID;
-	}
+    private int SCENARIOS_GROUP_ID;
 
-	/**
-	 * @return the sCENARIOS_GROUP_ID
-	 */
-	public int getSCENARIOS_GROUP_ID() {
-		return SCENARIOS_GROUP_ID;
-	}
+    private int RANK;
 
-	/**
-	 * @param sCENARIOS_GROUP_ID
-	 *            the sCENARIOS_GROUP_ID to set
-	 */
-	public void setSCENARIOS_GROUP_ID(int sCENARIOS_GROUP_ID) {
-		SCENARIOS_GROUP_ID = sCENARIOS_GROUP_ID;
-	}
+    private String NPP;
 
-	/**
-	 * @return the rANK
-	 */
-	public int getRANK() {
-		return RANK;
-	}
+    private String NAME;
 
-	/**
-	 * @param rANK
-	 *            the rANK to set
-	 */
-	public void setRANK(int rANK) {
-		RANK = rANK;
-	}
+    /**
+     * @return the iD
+     */
+    public int getID() {
+        return ID;
+    }
 
-	/**
-	 * @return the nPP
-	 */
-	public String getNPP() {
-		return NPP;
-	}
+    /**
+     * @param iD the iD to set
+     */
+    public void setID(int iD) {
+        ID = iD;
+    }
 
-	/**
-	 * @param nPP
-	 *            the nPP to set
-	 */
-	public void setNPP(String nPP) {
-		NPP = nPP;
-	}
+    /**
+     * @return the cALCULATION_ID
+     */
+    public int getCALCULATION_ID() {
+        return CALCULATION_ID;
+    }
 
-	/**
-	 * @return the nAME
-	 */
-	public String getNAME() {
-		return NAME;
-	}
+    /**
+     * @param cALCULATION_ID the cALCULATION_ID to set
+     */
+    public void setCALCULATION_ID(int cALCULATION_ID) {
+        CALCULATION_ID = cALCULATION_ID;
+    }
 
-	/**
-	 * @param nAME
-	 *            the nAME to set
-	 */
-	public void setNAME(String nAME) {
-		NAME = nAME;
-	}
+    /**
+     * @return the sCENARIOS_GROUP_ID
+     */
+    public int getSCENARIOS_GROUP_ID() {
+        return SCENARIOS_GROUP_ID;
+    }
 
-	public int getOBJECT_TYPE_ID() {
-		return OBJECT_TYPE_ID;
-	}
+    /**
+     * @param sCENARIOS_GROUP_ID the sCENARIOS_GROUP_ID to set
+     */
+    public void setSCENARIOS_GROUP_ID(int sCENARIOS_GROUP_ID) {
+        SCENARIOS_GROUP_ID = sCENARIOS_GROUP_ID;
+    }
 
-	public void setOBJECT_TYPE_ID(int oBJECT_TYPE_ID) {
-		OBJECT_TYPE_ID = oBJECT_TYPE_ID;
-	}
+    /**
+     * @return the rANK
+     */
+    public int getRANK() {
+        return RANK;
+    }
 
-	/**
-	 * @return the cHECKED
-	 */
-	public int getCHECKED() {
-		return CHECKED;
-	}
+    /**
+     * @param rANK the rANK to set
+     */
+    public void setRANK(int rANK) {
+        RANK = rANK;
+    }
 
-	/**
-	 * @param cHECKED the cHECKED to set
-	 */
-	public void setCHECKED(int cHECKED) {
-		CHECKED = cHECKED;
-	}
+    /**
+     * @return the nPP
+     */
+    public String getNPP() {
+        return NPP;
+    }
 
+    /**
+     * @param nPP the nPP to set
+     */
+    public void setNPP(String nPP) {
+        NPP = nPP;
+    }
 
+    /**
+     * @return the nAME
+     */
+    public String getNAME() {
+        return NAME;
+    }
+
+    /**
+     * @param nAME the nAME to set
+     */
+    public void setNAME(String nAME) {
+        NAME = nAME;
+    }
+
+    public int getOBJECT_TYPE_ID() {
+        return OBJECT_TYPE_ID;
+    }
+
+    public void setOBJECT_TYPE_ID(int oBJECT_TYPE_ID) {
+        OBJECT_TYPE_ID = oBJECT_TYPE_ID;
+    }
+
+    /**
+     * @return the cHECKED
+     */
+    public int getCHECKED() {
+        return CHECKED;
+    }
+
+    /**
+     * @param cHECKED the cHECKED to set
+     */
+    public void setCHECKED(int cHECKED) {
+        CHECKED = cHECKED;
+    }
 
 }

@@ -1,117 +1,116 @@
 package ru.wg.web.pojo;
 
 public class CalculationCriteria extends Criteria {
-	private int ID;
-	
-	private int CALCULATION_ID;
-	private String K1;
-	private String K2;
-	private String K3;
-	private String ACTUAL_VALUE;
-	private String FI;
 
-	/**
-	 * @return the iD
-	 */
-	public int getID() {
-		return ID;
-	}
+    private int ID;
 
-	/**
-	 * @param iD
-	 *            the iD to set
-	 */
-	public void setID(int iD) {
-		ID = iD;
-	}
+    private int CALCULATION_ID;
 
-	/**
-	 * @return the cALCULATION_ID
-	 */
-	public int getCALCULATION_ID() {
-		return CALCULATION_ID;
-	}
+    private String K1;
 
-	/**
-	 * @param cALCULATION_ID
-	 *            the cALCULATION_ID to set
-	 */
-	public void setCALCULATION_ID(int cALCULATION_ID) {
-		CALCULATION_ID = cALCULATION_ID;
-	}
+    private String K2;
 
-	/**
-	 * @return the k1
-	 */
-	public String getK1() {
-		return K1;
-	}
+    private String K3;
 
-	/**
-	 * @param k1
-	 *            the k1 to set
-	 */
-	public void setK1(String k1) {
-		K1 = k1;
-	}
+    private String ACTUAL_VALUE;
 
-	/**
-	 * @return the k2
-	 */
-	public String getK2() {
-		return K2;
-	}
+    private String FI;
 
-	/**
-	 * @param k2
-	 *            the k2 to set
-	 */
-	public void setK2(String k2) {
-		K2 = k2;
-	}
+    /**
+     * @return the iD
+     */
+    public int getID() {
+        return ID;
+    }
 
-	/**
-	 * @return the k3
-	 */
-	public String getK3() {
-		return K3;
-	}
+    /**
+     * @param iD the iD to set
+     */
+    public void setID(int iD) {
+        ID = iD;
+    }
 
-	/**
-	 * @param k3
-	 *            the k3 to set
-	 */
-	public void setK3(String k3) {
-		K3 = k3;
-	}
+    /**
+     * @return the cALCULATION_ID
+     */
+    public int getCALCULATION_ID() {
+        return CALCULATION_ID;
+    }
 
-	/**
-	 * @return the aCTUAL_VALUE
-	 */
-	public String getACTUAL_VALUE() {
-		return ACTUAL_VALUE;
-	}
+    /**
+     * @param cALCULATION_ID the cALCULATION_ID to set
+     */
+    public void setCALCULATION_ID(int cALCULATION_ID) {
+        CALCULATION_ID = cALCULATION_ID;
+    }
 
-	/**
-	 * @param aCTUAL_VALUE
-	 *            the aCTUAL_VALUE to set
-	 */
-	public void setACTUAL_VALUE(String aCTUAL_VALUE) {
-		ACTUAL_VALUE = aCTUAL_VALUE;
-	}
+    /**
+     * @return the k1
+     */
+    public String getK1() {
+        return K1;
+    }
 
-	/**
-	 * @return the fI
-	 */
-	public String getFI() {
-		return FI;
-	}
+    /**
+     * @param k1 the k1 to set
+     */
+    public void setK1(String k1) {
+        K1 = k1;
+    }
 
-	/**
-	 * @param fI
-	 *            the fI to set
-	 */
-	public void setFI(String fI) {
-		FI = fI;
-	}
+    /**
+     * @return the k2
+     */
+    public String getK2() {
+        return K2;
+    }
+
+    /**
+     * @param k2 the k2 to set
+     */
+    public void setK2(String k2) {
+        K2 = k2;
+    }
+
+    /**
+     * @return the k3
+     */
+    public String getK3() {
+        return K3;
+    }
+
+    /**
+     * @param k3 the k3 to set
+     */
+    public void setK3(String k3) {
+        K3 = k3;
+    }
+
+    /**
+     * @return the aCTUAL_VALUE
+     */
+    public String getACTUAL_VALUE() {
+        return ACTUAL_VALUE;
+    }
+
+    /**
+     * @param aCTUAL_VALUE the aCTUAL_VALUE to set
+     */
+    public void setACTUAL_VALUE(String aCTUAL_VALUE) {
+        ACTUAL_VALUE = aCTUAL_VALUE;
+    }
+
+    /**
+     * @return the fI
+     */
+    public String getFI() {
+        return FI;
+    }
+
+    /**
+     * @param fI the fI to set
+     */
+    public void setFI(String fI) {
+        FI = fI;
+    }
 }

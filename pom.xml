@@ -45,11 +45,6 @@
 			<artifactId>sqlite-jdbc</artifactId>
 			<version>3.7.15-M1</version>
 		</dependency>
-<!-- 		<dependency>
-			<groupId>commons-codec</groupId>
-			<artifactId>commons-codec</artifactId>
-			<version>1.10</version>
-		</dependency> -->
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi</artifactId>
@@ -60,26 +55,6 @@
 			<artifactId>commons-lang3</artifactId>
 			<version>3.4</version>
 		</dependency>
-<!-- 		<dependency>
-			<groupId>commons-io</groupId>
-			<artifactId>commons-io</artifactId>
-			<version>2.4</version>
-		</dependency>
-		<dependency>
-			<groupId>com.norconex.commons</groupId>
-			<artifactId>norconex-commons-lang</artifactId>
-			<version>1.7.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-jexl</artifactId>
-			<version>2.1.1</version>
-		</dependency>
--->
-		<!-- <dependency> <groupId>org.apache.commons</groupId> <artifactId>commons-lang3</artifactId> 
-			<version>3.3.2</version> </dependency> <dependency> <groupId>commons-io</groupId> 
-			<artifactId>commons-io</artifactId> <version>2.4</version> </dependency> -->
-
 		<dependency>
 			<groupId>servlets.com</groupId>
 			<artifactId>cos</artifactId>
@@ -90,43 +65,6 @@
 
 	<build>
 		<plugins>
-<!-- 
-			<plugin>
-				<groupId>com.github.wvengen</groupId>
-				<artifactId>proguard-maven-plugin</artifactId>
-				<version>2.0.11</version>
-				<dependencies>
-					<dependency>
-						<groupId>net.sf.proguard</groupId>
-						<artifactId>proguard-base</artifactId>
-						<version>5.2</version>
-					</dependency>
-				</dependencies>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<goals>
-							<goal>proguard</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<obfuscate>true</obfuscate>
-					<injar>wg-web-client-0.0.1-SNAPSHOT.jar</injar>
-					<outjar>wg-web-client-0.0.1-SNAPSHOT-proguarded.jar</outjar>
-
-					<options>
-						<option>-injars wg-web-client-0.0.1-SNAPSHOT.jar</option>
-						<option>-keep public class * { public protected *; }</option>
-					</options>
-					<libs>
-						<lib>${java.bootstrap.classes}</lib>
-						<lib>${java.cryptographic.extension.classes}</lib>
-						<lib>${java.secure.socket.extension.classes}</lib>
-					</libs>
-				</configuration>
-			</plugin>
--->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>

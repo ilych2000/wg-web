@@ -5,9 +5,9 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeSet;
-import java.util.Map.Entry;
 
 /**
  * Класс
@@ -85,13 +85,13 @@ public class StringUtils {
 
     /**
      * Добавляет
-     * 
+     *
      * @param aString
      * @param aObject
      * @param aPrefix
      */
-    public static void mapToString(StringBuilder aString, Object aObject,
-            String aPrefix, List<Object> aWatchedObjects) {
+    public static void mapToString(StringBuilder aString, Object aObject, String aPrefix,
+            List<Object> aWatchedObjects) {
         if (aObject == null) {
             aString.append("null").append(CR);
             return;
@@ -116,8 +116,7 @@ public class StringUtils {
                 aString.append(CR);
                 while (iter.hasNext()) {
                     aString.append(nextPrefix);
-                    mapToString(aString, iter.next(), nextPrefix,
-                            aWatchedObjects);
+                    mapToString(aString, iter.next(), nextPrefix, aWatchedObjects);
                 }
                 aString.append(aPrefix);
             }
@@ -127,10 +126,8 @@ public class StringUtils {
             if (((Map<?, ?>) aObject).size() > 0) {
                 aString.append(CR);
                 for (Entry<?, ?> item : ((Map<?, ?>) aObject).entrySet()) {
-                    aString.append(nextPrefix).append(item.getKey())
-                            .append("=");
-                    mapToString(aString, item.getValue(), nextPrefix,
-                            aWatchedObjects);
+                    aString.append(nextPrefix).append(item.getKey()).append("=");
+                    mapToString(aString, item.getValue(), nextPrefix, aWatchedObjects);
                 }
                 aString.append(aPrefix);
             }
@@ -141,18 +138,18 @@ public class StringUtils {
                 aString.append(String.valueOf(aObject)).append(CR);
             } else if (mapClass == String.class) {
 
-                aString.append("\"").append(String.valueOf(aObject))
-                        .append("\"").append(CR);
+                aString.append("\"").append(String.valueOf(aObject)).append("\"").append(CR);
             } else if (ReflectionUtils.isRedefinedToStringMethod(mapClass)) {
                 aString.append("(").append(mapClass.getSimpleName());
-                
+
                 if (!(aObject instanceof Number)) {
                     aString.append("#toString");
                 }
-                
+
                 aString.append(") ").append(String.valueOf(aObject)).append(CR);
             } else {
-                aString.append("(").append(mapClass.getSimpleName())
+                aString.append("(")
+                        .append(mapClass.getSimpleName())
                         .append("@")
                         .append(Integer.toHexString(aObject.hashCode()))
                         .append(")");
@@ -160,9 +157,9 @@ public class StringUtils {
                     aString.append(" Already viewed.").append(CR);
                 } else {
                     aWatchedObjects.add(aObject);
-                    mapToString(aString, UtilsMessage.toParametersMap(aObject,
-                            mapClass, Object.class), nextPrefix,
-                            aWatchedObjects);
+                    mapToString(aString,
+                            UtilsMessage.toParametersMap(aObject, mapClass, Object.class),
+                            nextPrefix, aWatchedObjects);
                 }
             }
         }
@@ -170,7 +167,7 @@ public class StringUtils {
 
     /**
      * Удаляет дубликаты из массив строк
-     * 
+     *
      * @param массив строк
      * @return массив строк
      */

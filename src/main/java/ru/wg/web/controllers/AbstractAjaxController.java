@@ -10,110 +10,107 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
-import ru.wg.web.WebConstants;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.stream.MalformedJsonException;
 
+import ru.wg.web.WebConstants;
+
 public class AbstractAjaxController extends AbstractAuthControllerEx {
 
-	private static final Logger log = Logger
-			.getLogger(AbstractAjaxController.class);
+    private static final Logger log = Logger.getLogger(AbstractAjaxController.class);
 
-	private static final long serialVersionUID = 1L;
-	private static final Gson JSON = new GsonBuilder().setPrettyPrinting()
-			.enableComplexMapKeySerialization().setDateFormat("dd.MM.yyyy")
-			.create();
+    private static final long serialVersionUID = 1L;
 
-	@SuppressWarnings({ "unchecked", "serial" })
-	@Override
-	public void doOperation(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
+    private static final Gson JSON = new GsonBuilder().setPrettyPrinting()
+            .enableComplexMapKeySerialization()
+            .setDateFormat("dd.MM.yyyy")
+            .create();
 
-		try {
-			Object inObject = null;
-			Object outObject = null;
-			try {
+    @SuppressWarnings({"unchecked", "serial"})
+    @Override
+    public void doOperation(HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
 
-				if (request.getHeader(WebConstants.HTTP_HEADER_CONTENT_TYPE) == null
-						|| !request
-								.getHeader(
-										WebConstants.HTTP_HEADER_CONTENT_TYPE)
-								.contains(
-										WebConstants.HTTP_HEADER_CONTENT_TYPE_MULTI_PART)) {
+        try {
+            Object inObject = null;
+            Object outObject = null;
+            try {
 
-					if (getResponsePojoClass() != null) {
-						try {
-							inObject = JSON.fromJson(request.getReader(),
-									getResponsePojoClass());
-						} catch (MalformedJsonException e) {
-							if (log.isDebugEnabled())
-								log.debug(e);
-						}
-					} else {
-						inObject = new HashMap<String, Object>();
+                if ((request.getHeader(WebConstants.HTTP_HEADER_CONTENT_TYPE) == null)
+                        || !request.getHeader(WebConstants.HTTP_HEADER_CONTENT_TYPE)
+                                .contains(WebConstants.HTTP_HEADER_CONTENT_TYPE_MULTI_PART)) {
 
-						for (Entry<String, String[]> p : request
-								.getParameterMap().entrySet()) {
-							((Map<String, Object>) inObject).put(p.getKey(),
-									p.getValue()[0]);
-						}
-					}
-				}
+                    if (getResponsePojoClass() != null) {
+                        try {
+                            inObject = JSON.fromJson(request.getReader(), getResponsePojoClass());
+                        } catch (MalformedJsonException e) {
+                            if (log.isDebugEnabled()) {
+                                log.debug(e);
+                            }
+                        }
+                    } else {
+                        inObject = new HashMap<String, Object>();
 
-				if (WebConstants.HTTP_METHOD_POST.equals(request.getMethod()))
-					outObject = doPostAjaxOperation(inObject, request, response);
-				else
-					outObject = doGetAjaxOperation(inObject, request, response);
-			} catch (final Exception e) {
-				log.error("", e);
+                        for (Entry<String, String[]> p : request.getParameterMap().entrySet()) {
+                            ((Map<String, Object>) inObject).put(p.getKey(), p.getValue()[0]);
+                        }
+                    }
+                }
 
-				outObject = new HashMap<String, String>() {
-					{
-						put("Exception", e.toString());
-					}
-				};
+                if (WebConstants.HTTP_METHOD_POST.equals(request.getMethod())) {
+                    outObject = doPostAjaxOperation(inObject, request, response);
+                } else {
+                    outObject = doGetAjaxOperation(inObject, request, response);
+                }
+            } catch (final Exception e) {
+                log.error("", e);
 
-			}
+                outObject = new HashMap<String, String>() {
 
-			if (outObject != null) {
-				response.setContentType(WebConstants.HTTP_HEADER_CONTENT_TYPE_APPLICATION_JAVASCRIPT
-						+ "; charset=" + WebConstants.ENCODING_UTF_8);
-				PrintWriter out = response.getWriter();
+                    {
+                        put("Exception", e.toString());
+                    }
+                };
 
-				JSON.toJson(outObject, out);
-				if (log.isDebugEnabled()) {
-					log.debug("outObject=" + outObject);
-					log.debug("JSON=" + JSON.toJson(outObject));
-				}
-				out.flush();
-				out.close();
-			}
-		} catch (Exception e) {
-			log.error("doOperation.", e);
-			throw e;
-		}
-	}
+            }
 
-	public Object doAjaxOperation(Object inObject, HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
-		return null;
-	}
+            if (outObject != null) {
+                response.setContentType(WebConstants.HTTP_HEADER_CONTENT_TYPE_APPLICATION_JAVASCRIPT
+                        + "; charset=" + WebConstants.ENCODING_UTF_8);
+                PrintWriter out = response.getWriter();
 
-	public Object doPostAjaxOperation(Object inObject,
-			HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
-		return doAjaxOperation(inObject, request, response);
-	}
+                JSON.toJson(outObject, out);
+                if (log.isDebugEnabled()) {
+                    log.debug("outObject=" + outObject);
+                    log.debug("JSON=" + JSON.toJson(outObject));
+                }
+                out.flush();
+                out.close();
+            }
+        } catch (Exception e) {
+            log.error("doOperation.", e);
+            throw e;
+        }
+    }
 
-	public Object doGetAjaxOperation(Object inObject, HttpServletRequest req,
-			HttpServletResponse response) throws Exception {
-		return doAjaxOperation(inObject, req, response);
-	}
+    public Object doAjaxOperation(Object inObject, HttpServletRequest request,
+            HttpServletResponse response) throws Exception {
+        return null;
+    }
 
-	public Class<Object> getResponsePojoClass() {
-		return null;
-	}
+    public Object doPostAjaxOperation(Object inObject, HttpServletRequest request,
+            HttpServletResponse response) throws Exception {
+        return doAjaxOperation(inObject, request, response);
+    }
+
+    public Object doGetAjaxOperation(Object inObject, HttpServletRequest req,
+            HttpServletResponse response) throws Exception {
+        return doAjaxOperation(inObject, req, response);
+    }
+
+    public Class<Object> getResponsePojoClass() {
+        return null;
+    }
 
 }

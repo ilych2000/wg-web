@@ -3,118 +3,109 @@ package ru.wg.web.controllers.utils;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.util.CellRangeAddress;
 
 public class SheetHelper {
 
-	private Sheet _sheet;
-	private Map<Integer, Row> _rows = new HashMap<Integer, Row>();
+    private Sheet _sheet;
 
-	public SheetHelper(Sheet aSheet) {
-		_sheet = aSheet;
-	}
+    private Map<Integer, Row> _rows = new HashMap<Integer, Row>();
 
-	/**
-	 * Добавление ячейки в книгу
-	 * 
-	 * @param aValue
-	 *            значение
-	 * @param aRowNum
-	 *            строка
-	 * @param aColumn
-	 *            столбец
-	 * @param aExpandRowNum
-	 *            на сколько объединить строк
-	 * @param aExpandColumn
-	 *            на сколько объединить столбец
-	 * @param aStyle
-	 *            стиль
-	 */
-	public Cell addCell(Object aValue, int aRowNum, int aColumn,
-			int aExpandRowNum, int aExpandColumn, CellStyle aStyle) {
-		Row row = getRow(aRowNum);
-		Cell cell = row.createCell(aColumn);
+    public SheetHelper(Sheet aSheet) {
+        _sheet = aSheet;
+    }
 
-		cell.setCellValue(String.valueOf(aValue));
+    /**
+     * Добавление ячейки в книгу
+     *
+     * @param aValue значение
+     * @param aRowNum строка
+     * @param aColumn столбец
+     * @param aExpandRowNum на сколько объединить строк
+     * @param aExpandColumn на сколько объединить столбец
+     * @param aStyle стиль
+     */
+    public Cell addCell(Object aValue, int aRowNum, int aColumn, int aExpandRowNum,
+            int aExpandColumn, CellStyle aStyle) {
+        Row row = getRow(aRowNum);
+        Cell cell = row.createCell(aColumn);
 
-		if (aStyle != null) {
-			cell.setCellStyle(aStyle);
-		}
+        cell.setCellValue(String.valueOf(aValue));
 
-		if (aExpandRowNum > 0 || aExpandColumn > 0) {
-			if (aStyle != null) {
-				for (int rowI = aRowNum; rowI <= aRowNum + aExpandRowNum; rowI++) {
-					for (int colI = aColumn; colI <= aColumn + aExpandColumn; colI++) {
-						if (!(rowI == aRowNum && colI == aColumn)) {
-							addCell("", rowI, colI, aStyle);
-						}
-					}
-				}
+        if (aStyle != null) {
+            cell.setCellStyle(aStyle);
+        }
 
-			}
+        if ((aExpandRowNum > 0) || (aExpandColumn > 0)) {
+            if (aStyle != null) {
+                for (int rowI = aRowNum; rowI <= (aRowNum + aExpandRowNum); rowI++) {
+                    for (int colI = aColumn; colI <= (aColumn + aExpandColumn); colI++) {
+                        if (!((rowI == aRowNum) && (colI == aColumn))) {
+                            addCell("", rowI, colI, aStyle);
+                        }
+                    }
+                }
 
-			_sheet.addMergedRegion(new CellRangeAddress(aRowNum, aRowNum
-					+ aExpandRowNum, aColumn, aColumn + aExpandColumn));
-		}
-		return cell;
-	}
+            }
 
-	/**
-	 * Добавление ячейки в книгу
-	 * 
-	 * @param aValue
-	 *            значение
-	 * @param aRowNum
-	 *            строка
-	 * @param aColumn
-	 *            столбец
-	 * @param aStyle
-	 *            стиль
-	 */
-	public Cell addCell(Object aValue, int aRowNum, int aColumn,
-			CellStyle aStyle) {
+            _sheet.addMergedRegion(new CellRangeAddress(aRowNum, aRowNum + aExpandRowNum, aColumn,
+                    aColumn + aExpandColumn));
+        }
+        return cell;
+    }
 
-		return addCell(aValue, aRowNum, aColumn, 0, 0, aStyle);
-	}
+    /**
+     * Добавление ячейки в книгу
+     *
+     * @param aValue значение
+     * @param aRowNum строка
+     * @param aColumn столбец
+     * @param aStyle стиль
+     */
+    public Cell addCell(Object aValue, int aRowNum, int aColumn, CellStyle aStyle) {
 
-	/**
-	 * @return the _row
-	 */
-	public Row getRow(int aRowNum) {
-		Row row = _rows.get(aRowNum);
+        return addCell(aValue, aRowNum, aColumn, 0, 0, aStyle);
+    }
 
-		if (row == null) {
-			row = _sheet.createRow(aRowNum);
-			_rows.put(aRowNum, row);
-		}
+    /**
+     * @return the _row
+     */
+    public Row getRow(int aRowNum) {
+        Row row = _rows.get(aRowNum);
 
-		return row;
-	}
+        if (row == null) {
+            row = _sheet.createRow(aRowNum);
+            _rows.put(aRowNum, row);
+        }
 
-	/**
-	 * Установка ширины столбца
-	 * 
-	 * @param aColumn
-	 *            столбец
-	 * @param aWidth
-	 *            ширина в символах
-	 * @see Sheet#setColumnWidth
-	 */
-	public void setColumnWidth(int aColumn, int aWidth) {
-		_sheet.setColumnWidth(aColumn, aWidth * 256);
-	}
+        return row;
+    }
 
-	/**
-	 * @return the _sheet
-	 */
-	public Sheet getSheet() {
-		return _sheet;
-	}
+    /**
+     * Установка ширины столбца
+     *
+     * @param aColumn столбец
+     * @param aWidth ширина в символах
+     * @see Sheet#setColumnWidth
+     */
+    public void setColumnWidth(int aColumn, int aWidth) {
+        _sheet.setColumnWidth(aColumn, aWidth * 256);
+    }
 
-	public void createFreezePane(int colSplit, int rowSplit) {
-		_sheet.createFreezePane(colSplit, rowSplit);
+    /**
+     * @return the _sheet
+     */
+    public Sheet getSheet() {
+        return _sheet;
+    }
 
-	}
+    public void createFreezePane(int colSplit, int rowSplit) {
+        _sheet.createFreezePane(colSplit, rowSplit);
+
+    }
 
 }

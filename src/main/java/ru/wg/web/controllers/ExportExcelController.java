@@ -11,21 +11,20 @@ import ru.wg.web.controllers.utils.ExportExcelUtils;
 @WebServlet(name = "exportexcel", urlPatterns = "/exportexcel.do")
 public class ExportExcelController extends AbstractAuthControllerEx {
 
-	/** 	 */
-	private static final long serialVersionUID = 1L;
+    /** 	 */
+    private static final long serialVersionUID = 1L;
 
-	@SuppressWarnings("unused")
-	private static final Logger LOG = Logger
-			.getLogger(ExportExcelController.class);
+    @SuppressWarnings("unused")
+    private static final Logger LOG = Logger.getLogger(ExportExcelController.class);
 
-	@Override
-	protected void doOperation(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
+    @Override
+    protected void doOperation(HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
 
-		final String calcID = request.getParameter("ID");
+        final String calcID = request.getParameter("ID");
 
-		ExportExcelUtils.writeExel(calcID, response, _sqlManager);
+        ExportExcelUtils.writeExel(calcID, response, _sqlManager);
 
-	}
+    }
 
 }

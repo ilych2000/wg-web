@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package ru.wg.web.controllers;
 
@@ -7,18 +7,17 @@ import ru.wg.db.dao.ManagerDao;
 
 /**
  * @author Илья
- *
  */
 public abstract class AbstractAuthControllerEx extends AbstractAuthController {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
-	protected static ManagerDao _sqlManager;
+    protected static ManagerDao _sqlManager;
 
-	public static void setSqlManager(ManagerDao aSqlManager) {
-		_sqlManager = aSqlManager;
-	}
+    public static void setSqlManager(ManagerDao aSqlManager) {
+        _sqlManager = aSqlManager;
+    }
 }

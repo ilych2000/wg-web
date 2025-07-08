@@ -3,32 +3,35 @@ package ru.wg.web.pojo;
 import java.util.List;
 
 public class Area {
-	private int ID;
-	private String NAME;
-	private List<Uzel> UZELS;
 
-	public int getID() {
-		return ID;
-	}
+    private int ID;
 
-	public void setID(int iD) {
-		ID = iD;
-	}
+    private String NAME;
 
-	public String getNAME() {
-		return NAME;
-	}
+    private List<Uzel> UZELS;
 
-	public void setNAME(String nAME) {
-		NAME = nAME;
-	}
+    public int getID() {
+        return ID;
+    }
 
-	public List<Uzel> getUZELS() {
-		return UZELS;
-	}
+    public void setID(int iD) {
+        ID = iD;
+    }
 
-	public void setUZELS(List<Uzel> uZELS) {
-		UZELS = uZELS;
-	}
+    public String getNAME() {
+        return NAME;
+    }
+
+    public void setNAME(String nAME) {
+        NAME = nAME;
+    }
+
+    public List<Uzel> getUZELS() {
+        return UZELS;
+    }
+
+    public void setUZELS(List<Uzel> uZELS) {
+        UZELS = uZELS;
+    }
 
 }
